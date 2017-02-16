@@ -2,6 +2,11 @@
 #define ll long long
 using namespace std;
 
+#define noOfTracks 3
+#define noOfSectors 4
+#define N 1000
+#define radius 3
+
 double Eelc = 0.0000000001;
 double Eemp = 0.0000000000001;
 double Eagg = 0.0000000000000001;
@@ -84,26 +89,7 @@ void divideInToTracks(vector<node> &nodeList, int noOfTracks, int r) {
 	}
 }
 
-int main() {
-	int noOfTracks, noOfSectors, N;
-	double radius, areaOfASegment;
-
-	cout<<"Enter radius of circle: ";
-	cin>>radius;
-	cout<<"Enter the total number of nodes: ";
-	cin>>N;
-	cout<<"Enter no of tracks and no of sectors respectively: ";
-	cin>>noOfTracks>>noOfSectors;
-	
-	double sectorAngle = 360 / noOfSectors;
-	areaOfASegment = ((M_PI * (sectorAngle / 180)) / 2) * radius * radius;
-	cout<<"Area of each and every Sector: "<<areaOfASegment<<"\n\n";
-
-	vector <node> nodeList = getNodes(0, 0, radius, N);
-	
-	divideInToTracks(nodeList, noOfTracks, radius);
-
-
+void divideInToSectors(vector<node> &nodeList){
 	for (int i = 0; i < nodeList.size(); i++) {
 
 		if (nodeList[i].ycor == 0 && nodeList[i].xcor > 0) {
@@ -130,6 +116,31 @@ int main() {
 			}
 		}
 	}
+
+}
+
+int main() {
+	//int noOfTracks, noOfSectors, N;
+	//double radius, 
+	double areaOfASegment;
+
+	//cout<<"Enter radius of circle: ";
+	//cin>>radius;
+	//cout<<"Enter the total number of nodes: ";
+	//cin>>N;
+	//cout<<"Enter no of tracks and no of sectors respectively: ";
+	//cin>>noOfTracks>>noOfSectors;
+	
+	double sectorAngle = 360 / noOfSectors;
+	areaOfASegment = ((M_PI * (sectorAngle / 180)) / 2) * radius * radius;
+	cout<<"Area of each and every Sector: "<<areaOfASegment<<"\n\n";
+
+	vector <node> nodeList = getNodes(0, 0, radius, N);
+	
+	divideInToTracks(nodeList, noOfTracks, radius);
+
+	divideInToSectors(nodeList);
+	
 /*
 	for (int i = 0; i < nodeList.size(); i++) {
 		cout<<nodeList[i].xcor<<" "<<nodeList[i].ycor<<" ";
